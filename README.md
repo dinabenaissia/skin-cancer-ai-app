@@ -24,3 +24,9 @@ This project is a Flask-based web application that uses a pre-trained VGG16 deep
 ## Demo Video
 
 See demo_video.mp4 included in this repository.
+
+## Note
+
+The trained model file (`vgg16_skin_cancer.h5`) is not included in this repository because it exceeds GitHub's file size limit (100 MB).
+
+If needed, the model file can be provided separately upon request.
