@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | SkinAI{% endblock %}
+
+{% block content %}
+<section class="page-header fade-in">
+    <div>
+        <p class="eyebrow">AI control center</p>
+        <h1>Dashboard</h1>
+    </div>
+    <a class="btn btn-primary" href="/predict">
+        <i class="bi bi-plus-circle" aria-hidden="true"></i>
+        New Analysis
+    </a>
+</section>
+
+<section class="action-grid fade-in stagger-1">
+    <a class="action-card primary-action" href="/predict">
+        <span class="icon-chip">
+            <i class="bi bi-cpu" aria-hidden="true"></i>
+        </span>
+        <div>
+            <h2>New Analysis</h2>
+            <p>Run an AI-assisted lesion image assessment.</p>
+        </div>
+        <span class="card-link">
+            Start
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </span>
+    </a>
+
+    <a class="action-card" href="/patients">
+        <span class="icon-chip">
+            <i class="bi bi-clipboard2-pulse" aria-hidden="true"></i>
+        </span>
+        <div>
+            <h2>Patient History</h2>
+            <p>Review previous diagnostic records and images.</p>
+        </div>
+        <span class="card-link">
+            Open
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </span>
+    </a>
+
+    <a class="action-card danger-action" href="/logout">
+        <span class="icon-chip">
+            <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+        </span>
+        <div>
+            <h2>Logout</h2>
+            <p>End the current clinical workspace session.</p>
+        </div>
+        <span class="card-link">
+            Exit
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </span>
+    </a>
+</section>
+{% endblock %}

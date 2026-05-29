@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Patients | SkinAI{% endblock %}
+
+{% block content %}
+<section class="page-header fade-in">
+    <div>
+        <p class="eyebrow">Patient history</p>
+        <h1>Patients</h1>
+    </div>
+    <a class="btn btn-primary" href="/predict">
+        <i class="bi bi-plus-circle" aria-hidden="true"></i>
+        New Analysis
+    </a>
+</section>
+
+<section class="table-card fade-in stagger-1">
+    {% if patients %}
+    <div class="table-toolbar">
+        <div>
+            <h2>Diagnostic Records</h2>
+            <span>{{ patients|length }} saved record{% if patients|length != 1 %}s{% endif %}</span>
+        </div>
+        <i class="bi bi-database-check" aria-hidden="true"></i>
+    </div>
+
+    <div class="table-scroll">
+        <table class="table align-middle clinical-table">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Age</th>
+                    <th>Diagnosis</th>
+                    <th>Confidence</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in patients %}
+                <tr>
+                    <td class="patient-name">{{ p.name }}</td>
+                    <td>{{ p.age }}</td>
+                    <td>
+                        <span class="status-pill {% if p.result == 'Malignant' %}status-danger{% else %}status-success{% endif %}">
+                            {{ p.result }}
+                        </span>
+                    </td>
+                    <td>
+                        <strong>{{ (p.probability * 100) | round(2) }}%</strong>
+                    </td>
+                    <td>
+                        <img src="/{{ p.image_path }}"
+                             class="patient-thumb"
+                             alt="Patient lesion image">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <span class="icon-chip">
+            <i class="bi bi-clipboard2-plus" aria-hidden="true"></i>
+        </span>
+        <h2>No patients yet</h2>
+        <a class="btn btn-primary" href="/predict">Create First Analysis</a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

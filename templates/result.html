@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Result | SkinAI{% endblock %}
+
+{% block content %}
+<section class="page-header fade-in">
+    <div>
+        <p class="eyebrow">AI diagnosis report</p>
+        <h1>Diagnostic Result</h1>
+    </div>
+    <a class="btn btn-outline-secondary" href="/dashboard">
+        <i class="bi bi-grid-1x2" aria-hidden="true"></i>
+        Dashboard
+    </a>
+</section>
+
+<section class="result-layout fade-in stagger-1">
+    <div class="diagnosis-card {% if result == 'Malignant' %}diagnosis-danger{% else %}diagnosis-success{% endif %}">
+        <div class="diagnosis-topline">
+            <span class="diagnosis-label">AI Classification</span>
+            <span class="status-pill {% if result == 'Malignant' %}status-danger{% else %}status-success{% endif %}">
+                {{ result }}
+            </span>
+        </div>
+
+        <h2>{{ result }}</h2>
+
+        <div class="confidence-block">
+            <div class="confidence">
+                <span>Confidence score</span>
+                <strong>{{ prob }}%</strong>
+            </div>
+            <div class="progress confidence-progress" role="progressbar" aria-valuenow="{{ prob }}" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: {{ prob }}%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-panel">
+        <div class="image-panel-header">
+            <span>Medical image preview</span>
+            <i class="bi bi-image" aria-hidden="true"></i>
+        </div>
+        <img src="/{{ img }}"
+             class="result-image"
+             alt="Analyzed lesion image">
+    </div>
+</section>
+
+<div class="result-actions fade-in stagger-2">
+    <a class="btn btn-primary" href="/predict">
+        <i class="bi bi-plus-circle" aria-hidden="true"></i>
+        New Analysis
+    </a>
+    <a class="btn btn-light" href="/patients">
+        <i class="bi bi-table" aria-hidden="true"></i>
+        Patient History
+    </a>
+</div>
+{% endblock %}
