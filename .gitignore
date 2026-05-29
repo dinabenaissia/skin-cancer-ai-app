@@ -1,1 +1,3 @@
 model/vgg16_skin_cancer.h5
+__pycache__/
+*.pyc
